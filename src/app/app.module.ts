@@ -16,6 +16,7 @@ import { ShellModule } from './shell/shell.module';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { RegisterModule } from './register/register.module';
+import { httpInterceptorProviders } from './@core/http-interceptors';
 
 @NgModule({
   imports: [
@@ -35,7 +36,7 @@ import { RegisterModule } from './register/register.module';
     AppRoutingModule, // must be imported as the last module as it contains the fallback route
   ],
   declarations: [AppComponent],
-  providers: [],
+  providers: [httpInterceptorProviders],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
