@@ -4,8 +4,8 @@ import { Observable, of } from 'rxjs';
 import { Credentials, CredentialsService } from './credentials.service';
 
 export interface LoginContext {
-  firstname: string,
-  flastname: string,
+  firstname?: string,
+  flastname?: string,
   username: string;
   password: string;
   remember?: boolean;

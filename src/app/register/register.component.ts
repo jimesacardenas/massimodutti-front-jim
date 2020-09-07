@@ -21,7 +21,6 @@ export class RegisterComponent implements OnInit, OnDestroy {
 
   constructor(
     private router: Router,
-    private route: ActivatedRoute,
     private formBuilder: FormBuilder,
     private authenticationService: AuthenticationService
   ) {

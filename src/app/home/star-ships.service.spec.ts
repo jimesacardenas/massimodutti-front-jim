@@ -5,52 +5,103 @@ import { HttpClientTestingModule, HttpTestingController } from '@angular/common/
 import { CoreModule } from '@core';
 import { StarShipsService, IApiResponse } from './star-ships.service';
 
-describe('QuoteService', () => {
+describe('StarShipsService', () => {
   let starShipsService: StarShipsService;
-  let httpMock: HttpTestingController;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [CoreModule, HttpClientTestingModule],
-      providers: [starShipsService],
     });
 
     starShipsService = TestBed.inject(StarShipsService);
-    httpMock = TestBed.inject(HttpTestingController as Type<HttpTestingController>);
   });
 
-  afterEach(() => {
-    httpMock.verify();
-  });
-
-  describe('getRandomQuote', () => {
-    it('should return a random Chuck Norris quote', () => {
-      // Arrange
-      const mockShips = { };
+  describe('StarShipsService', () => {
+    it('get starShip', () => {
 
       // Act
-      const randomQuoteSubscription = starShipsService.get(1);
+      const request = starShipsService.get(1);
 
       // Assert
-      randomQuoteSubscription.subscribe((resp: IApiResponse) => {
-        expect(resp).toEqual(starShipsService.get);
+      request.subscribe((resp: IApiResponse) => {
+        expect(resp).toBeDefined();
       });
-      httpMock.expectOne({}).flush(mockShips);
     });
 
-    it('should return a string in case of error', () => {
+    it('create starShip', () => {
       // Act
-      const randomQuoteSubscription = starShipsService.get(1);
+      const request = starShipsService.create({
+        name: 'starShip-name',
+        model: 'starShip-model',
+        max_atmosphering_speed: '1000',
+        manufacturer: 'audi',
+        starship_class: 'one',
+        length: '1200',
+        url: 'http://localhost/1.jpg'
+      });
 
       // Assert
-      randomQuoteSubscription.subscribe((resp: IApiResponse) => {
-        expect(typeof resp).toEqual('object');
-        expect(resp).toContain('Error');
-      });
-      httpMock.expectOne({}).flush(null, {
-        status: 500,
-        statusText: 'error',
+      request.subscribe((resp: any) => {
+        expect(resp).toBeDefined();
       });
     });
+
+    it('update starShip', () => {
+      // Act
+      const sShip = {
+        name: 'starShip-name',
+        model: 'starShip-model',
+        max_atmosphering_speed: '1000',
+        manufacturer: 'audi',
+        starship_class: 'one',
+        length: '1200',
+        url: 'http://localhost/1.jpg'
+      };
+
+      const createreq = starShipsService.create(sShip);
+      createreq.subscribe();
+
+      sShip.name = 'starShip-name-002';
+      const updatereq = starShipsService.update('http://localhost/1.jpg', sShip);
+
+      // Assert
+      updatereq.subscribe((resp: any) => {
+        expect(resp.name).not.toEqual('starShip-name');
+      });
+    });
+
+    it('delete starShip', () => {
+      // Act
+      const sShip = {
+        name: 'starShip-name',
+        model: 'starShip-model',
+        max_atmosphering_speed: '1000',
+        manufacturer: 'audi',
+        starship_class: 'one',
+        length: '1200',
+        url: 'http://localhost/1.jpg'
+      };
+
+      const createreq = starShipsService.create(sShip);
+      createreq.subscribe();
+
+      const updatereq = starShipsService.delete(sShip);
+
+      // Assert
+      updatereq.subscribe((resp: any) => {
+        expect(resp.name).toBeDefined();
+      });
+    });
+
+    it('get starShip', () => {
+      // Act
+      const getreq = starShipsService.get(1);
+
+      // Assert
+      getreq.subscribe((resp: any) => {
+        expect(resp).toBeDefined();
+      });
+    });
+
   });
 });

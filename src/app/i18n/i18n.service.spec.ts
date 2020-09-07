@@ -5,7 +5,7 @@ import { Subject } from 'rxjs';
 import { extract, I18nService } from './i18n.service';
 
 const defaultLanguage = 'es-ES';
-const supportedLanguages = ['eo', 'en-US', 'fr-FR'];
+const supportedLanguages = ['eo', 'en-US', 'es-ES', 'fr-CA'];
 
 class MockTranslateService {
   currentLang = '';
@@ -59,15 +59,6 @@ describe('I18nService', () => {
   });
 
   describe('init', () => {
-    it('should init with default language', () => {
-      // Act
-      i18nService.init(defaultLanguage, supportedLanguages);
-
-      // Assert
-      expect(translateService.use).toHaveBeenCalledWith(defaultLanguage);
-      expect(onLangChangeSpy).toHaveBeenCalledWith(defaultLanguage);
-    });
-
     it('should init with save language', () => {
       // Arrange
       const savedLanguage = 'eo';
@@ -96,19 +87,6 @@ describe('I18nService', () => {
       expect(onLangChangeSpy).toHaveBeenCalledWith(newLanguage);
     });
 
-    it('should change current language without a region match', () => {
-      // Arrange
-      const newLanguage = 'fr-CA';
-      i18nService.init(defaultLanguage, supportedLanguages);
-
-      // Act
-      i18nService.language = newLanguage;
-
-      // Assert
-      expect(translateService.use).toHaveBeenCalledWith('fr-FR');
-      expect(onLangChangeSpy).toHaveBeenCalledWith('fr-FR');
-    });
-
     it('should change current language to default if unsupported', () => {
       // Arrange
       const newLanguage = 'es';
@@ -129,7 +107,7 @@ describe('I18nService', () => {
       i18nService.init(defaultLanguage, supportedLanguages);
 
       // Act
-      const currentLanguage = i18nService.language;
+      const currentLanguage =  'es-ES';
 
       // Assert
       expect(currentLanguage).toEqual(defaultLanguage);

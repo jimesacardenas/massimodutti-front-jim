@@ -19,11 +19,40 @@ describe('AuthenticationService', () => {
     spyOn(credentialsService, 'setCredentials').and.callThrough();
   });
 
+  describe('register', () => {
+    it('should register user', fakeAsync(() => {
+      // Arrange
+      const request = authenticationService.register({
+        username: 'test',
+        password: '123',
+        firstname: 'test',
+        flastname: 'test'
+      });
+      request.subscribe();
+      tick();
+
+      // Assert
+      request.subscribe((credentials) => {
+        expect(credentials).toBeDefined();
+      });
+    }));
+  });
+
+
   describe('login', () => {
     it('should return credentials', fakeAsync(() => {
       // Act
+      const registerrequest = authenticationService.register({
+        username: 'test',
+        password: '123',
+        firstname: 'test',
+        flastname: 'test'
+      });
+
+      registerrequest.subscribe();
+
       const request = authenticationService.login({
-        username: 'toto',
+        username: 'test',
         password: '123',
       });
       tick();
@@ -39,8 +68,18 @@ describe('AuthenticationService', () => {
       expect(credentialsService.isAuthenticated()).toBe(false);
 
       // Act
+      const registerrequest = authenticationService.register({
+        username: 'test',
+        password: '123',
+        firstname: 'test',
+        flastname: 'test'
+      });
+
+      registerrequest.subscribe();
+
+      // Act
       const request = authenticationService.login({
-        username: 'toto',
+        username: 'test',
         password: '123',
       });
       tick();
@@ -57,7 +96,7 @@ describe('AuthenticationService', () => {
     it('should persist credentials for the session', fakeAsync(() => {
       // Act
       const request = authenticationService.login({
-        username: 'toto',
+        username: 'test',
         password: '123',
       });
       tick();
@@ -72,7 +111,7 @@ describe('AuthenticationService', () => {
     it('should persist credentials across sessions', fakeAsync(() => {
       // Act
       const request = authenticationService.login({
-        username: 'toto',
+        username: 'test',
         password: '123',
         remember: true,
       });
@@ -89,8 +128,18 @@ describe('AuthenticationService', () => {
   describe('logout', () => {
     it('should clear user authentication', fakeAsync(() => {
       // Arrange
+      const registerrequest = authenticationService.register({
+        username: 'test',
+        password: '123',
+        firstname: 'test',
+        flastname: 'test'
+      });
+
+      registerrequest.subscribe();
+
+
       const loginRequest = authenticationService.login({
-        username: 'toto',
+        username: 'test',
         password: '123',
       });
       tick();
