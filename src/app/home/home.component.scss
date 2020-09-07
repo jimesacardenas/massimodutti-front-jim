@@ -1,0 +1,67 @@
+.container {
+  text-align: center;
+  padding: 1em;
+}
+
+.logo {
+  width: 150px;
+  margin: 0 auto;
+}
+
+.ship-card {
+  max-width: 250px;
+  margin: 20px;
+  font-size: 9px !important;
+}
+
+.ship-header-image {
+  background-image: url("https://material.angular.io/assets/img/examples/shiba1.jpg");
+  background-size: cover;
+}
+
+.mat-card-actions {
+  text-align: right;
+}
+
+.loading {
+  height: 60vh;
+}
+
+.custtom-card-header-text {
+  text-align: left !important;
+}
+
+.create {
+  margin-left: 18px;
+}
+
+.row {
+  margin-bottom: 10px;
+  font-size: 10px !important;
+}
+
+.label {
+  font-weight: bold;
+}
+
+.mat-card-title {
+  font-size: 10px !important;
+}
+
+.mat-card-subtitle {
+  font-size: 9px !important;
+}
+
+img {
+  height: 160px;
+  width: calc(100% + 32px);
+  margin: 0 -16px 16px -16px;
+}
+
+// .image-continer {
+//   background-repeat: no-repeat;
+//   background-position: center center;
+//   background-size: contain;
+//   height: 200px;
+//   width: auto;
+// }

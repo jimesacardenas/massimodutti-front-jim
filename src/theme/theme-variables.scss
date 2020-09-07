@@ -1,0 +1,61 @@
+/*
+ * Application global variables.
+ */
+
+// Angular Material custom theme
+// See https://material.angular.io/guide/theming for more details.
+//
+// You can also read https://medium.com/@tomastrajan/the-complete-guide-to-angular-material-themes-4d165a9d24d1
+// for more insight about Angular Material theming.
+
+@import "~@angular/material/theming";
+
+$md-mypalette: (
+    50 : #f7f3ed,
+    100 : #eae2d3,
+    200 : #dcceb5,
+    300 : #ceba97,
+    400 : #c4ac81,
+    500 : #b99d6b,
+    600 : #b29563,
+    700 : #aa8b58,
+    800 : #a2814e,
+    900 : #936f3c,
+    A100 : #fff4e4,
+    A200 : #ffdeb1,
+    A400 : #ffc87e,
+    A700 : #ffbe64,
+    contrast: (
+        50 : #000000,
+        100 : #000000,
+        200 : #000000,
+        300 : #000000,
+        400 : #000000,
+        500 : #000000,
+        600 : #000000,
+        700 : #000000,
+        800 : #000000,
+        900 : #ffffff,
+        A100 : #000000,
+        A200 : #000000,
+        A400 : #000000,
+        A700 : #000000,
+    )
+);
+
+// Define the palettes for your theme using the Material Design palettes available in palette.scss
+// (imported above). For each palette, you can optionally specify a default, lighter, and darker
+// hue.
+$app-primary: mat-palette($md-mypalette);
+// stylelint-disable-next-line value-keyword-case
+$app-accent: mat-palette($mat-pink, A200, A100, A400);
+
+// The warn palette is optional (defaults to red).
+$app-warn: mat-palette($mat-red);
+
+// Create the theme object (a Sass map containing all of the palettes).
+$app-theme: mat-light-theme($app-primary, $app-accent, $app-warn);
+
+// Material design icons font path
+$material-design-icons-font-directory-path: "~material-design-icons-iconfont/dist/fonts/";
+

@@ -1,0 +1,53 @@
+<div class="container">
+  <div *ngIf="starshipsResp" fxLayout="row" fxLayoutAlign="space-between center">
+    <button mat-raised-button (click)="callCreateModal()" color="primary" class="create" translate>
+       Create StarShip
+    </button>
+    <mat-paginator [length]="starshipsResp.count" [pageSize]="10" (page)="onPageChange($event)"></mat-paginator>
+  </div>
+  <div *ngIf="!isLoading;else loadingTemplate" fxLayout="row wrap" fxLayout.xs="column"
+    fxLayoutAlign="space-aroun center">
+    <mat-card role="group" class="ship-card" *ngFor="let startship of starshipsResp.results" fxFlex.lg="33" fxFlex.lt-lg="50"
+      fxFlex.xs="100">
+      <mat-card-header class="custtom-card-header-text">
+        <mat-card-title>{{startship.name}}</mat-card-title>
+        <mat-card-subtitle>{{startship.manufacturer}}</mat-card-subtitle>
+      </mat-card-header>
+      <img mat-card-image [src]="startship.url" onerror="this.onerror=null;this.src='/assets/error.gif';">
+      <mat-card-content>
+        <div fxLayout="column" fxLayoutAlign="space-evenly start">
+          <div fxLayout="row" class="row" fxLayoutAlign="start center">
+            <div class="label" translate>Model:</div>
+            <div>{{startship.model}}</div>
+          </div>
+          <div fxLayout="row" class="row" fxLayoutAlign="start center">
+            <div class="label" translate>Class:</div>
+            <div>{{startship.starship_class}}</div>
+          </div>
+          <div fxLayout="row" class="row" fxLayoutAlign="start center">
+            <div class="label" translate>Speed:</div>
+            <div>{{startship.max_atmosphering_speed}}</div>
+          </div>
+          <div fxLayout="row" class="row" fxLayoutAlign="start center">
+            <div class="label" translate>length:</div>
+            <div>{{startship.length}}</div>
+          </div>
+        </div>
+      </mat-card-content>
+      <mat-card-actions>
+        <button mat-icon-button color="primary" (click)="callEditModal(startship)">
+          <mat-icon>edit</mat-icon>
+        </button>
+        <button mat-icon-button color="warn" (click)="callDeleteModal(startship)">
+          <mat-icon>delete</mat-icon>
+        </button>
+      </mat-card-actions>
+    </mat-card>
+
+  </div>
+</div>
+<ng-template #loadingTemplate>
+  <div fxLayout="row" fxLayoutAlign="center center" class="loading">
+    <mat-spinner></mat-spinner>
+  </div>
+</ng-template>

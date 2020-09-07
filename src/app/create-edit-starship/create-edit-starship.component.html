@@ -1,0 +1,69 @@
+<h2 mat-dialog-title *ngIf="id === '';else h2Update" translate>Create</h2>
+<ng-template #h2Update>
+    <h2 mat-dialog-title translate>Edit</h2>
+</ng-template>
+<mat-dialog-content class="mat-typography">
+    <form [formGroup]="createEditForm" novalidate>
+        <div class="register-fields" fxLayout="column">
+            <ngx-dropzone (change)="onSelect($event)">
+                <div fxLayout="row" fxLayoutAlign="center start" class="dropzone-continer">
+                    <ngx-dropzone-label *ngIf="files.length === 0">Upload Startship</ngx-dropzone-label>
+                    <ngx-dropzone-image-preview ngProjectAs="ngx-dropzone-preview" *ngFor="let f of files" [file]="f"
+                        [removable]="true" (removed)="onRemove(f)">
+                    </ngx-dropzone-image-preview>
+                </div>
+            </ngx-dropzone>
+            <br />
+            <mat-form-field [hideRequiredMarker]="true">
+                <input type="text" matInput formControlName="name" autocomplete="name"
+                    [placeholder]="'Name' | translate" required />
+                <mat-error *ngIf="createEditForm.controls.name.invalid && createEditForm.controls.name.touched">
+                    <span translate>Name is required</span>
+                </mat-error>
+            </mat-form-field>
+            <mat-form-field [hideRequiredMarker]="true">
+                <input type="text" matInput formControlName="manufacturer" autocomplete="manufacturer"
+                    [placeholder]="'Manufacturer' | translate" required />
+                <mat-error
+                    *ngIf="createEditForm.controls.manufacturer.invalid && createEditForm.controls.manufacturer.touched">
+                    <span translate>Manufacturer is required</span>
+                </mat-error>
+            </mat-form-field>
+            <mat-form-field [hideRequiredMarker]="true">
+                <input type="text" matInput formControlName="model" autocomplete="model"
+                    [placeholder]="'Model' | translate" required />
+                <mat-error *ngIf="createEditForm.controls.model.invalid && createEditForm.controls.model.touched">
+                    <span translate>Model is required</span>
+                </mat-error>
+            </mat-form-field>
+            <mat-form-field [hideRequiredMarker]="true">
+                <input type="text" matInput formControlName="starship_class" autocomplete="starship_class"
+                    [placeholder]="'Class' | translate" required />
+                <mat-error
+                    *ngIf="createEditForm.controls.starship_class.invalid && createEditForm.controls.starship_class.touched">
+                    <span translate>Class is required</span>
+                </mat-error>
+            </mat-form-field>
+            <mat-form-field [hideRequiredMarker]="true">
+                <input type="number" matInput formControlName="max_atmosphering_speed"
+                    autocomplete="max_atmosphering_speed" [placeholder]="'Speed' | translate" required />
+                <mat-error
+                    *ngIf="createEditForm.controls.max_atmosphering_speed.invalid && createEditForm.controls.max_atmosphering_speed.touched">
+                    <span translate>Speed is required</span>
+                </mat-error>
+            </mat-form-field>
+            <mat-form-field [hideRequiredMarker]="true">
+                <input type="number" matInput formControlName="length" autocomplete="length"
+                    [placeholder]="'Length' | translate" required />
+                <mat-error *ngIf="createEditForm.controls.length.invalid && createEditForm.controls.length.touched">
+                    <span translate>Length is required</span>
+                </mat-error>
+            </mat-form-field>
+            <br>
+        </div>
+    </form>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+    <button mat-button mat-dialog-close translate>Cancel</button>
+    <button mat-button color="primary" (click)="excAction()" cdkFocusInitial translate>Create</button>
+</mat-dialog-actions>

@@ -1,0 +1,65 @@
+{
+  "generator-ngx-rocket": {
+    "appName": "massimodutti",
+    "target": [
+      "web"
+    ],
+    "pwa": true,
+    "mobile": null,
+    "desktop": null,
+    "ui": "material",
+    "layout": "side-menu",
+    "auth": true,
+    "lazy": true,
+    "angulartics": false,
+    "languages": [
+      "es-ES",
+      "en-US"
+    ],
+    "analyticsProvider": null,
+    "googleAnalyticsAccount": null,
+    "tools": [
+      "prettier",
+      "hads"
+    ],
+    "utility": [
+      "moment"
+    ],
+    "deploy": "none",
+    "version": "8.1.1",
+    "props": {
+      "location": "path",
+      "strict": false,
+      "skipInstall": false,
+      "skipQuickstart": false,
+      "initGit": true,
+      "usePrefix": true,
+      "appName": "massimodutti",
+      "target": [
+        "web"
+      ],
+      "pwa": true,
+      "ui": "material",
+      "layout": "side-menu",
+      "auth": true,
+      "lazy": true,
+      "angulartics": false,
+      "languages": [
+        "es-ES",
+        "en-US"
+      ],
+      "tools": [
+        "prettier",
+        "hads"
+      ],
+      "utility": [
+        "moment"
+      ],
+      "deploy": "none",
+      "projectName": "massimodutti",
+      "packageManager": "npm",
+      "mobile": [],
+      "desktop": []
+    }
+  }
+}
